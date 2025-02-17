@@ -3,46 +3,55 @@ import { Image } from "astro:assets";
 import Container from "../shared/Container.astro";
 import Paragraph from "../shared/Paragraph.astro";
 import Title from "../shared/Title.astro";
-
+import Service from "../cards/Service.astro";
 import myImage from "../../assets/images/dev-with-c-1.webp";
 import GradiantText from "../shared/GradiantText.astro";
+
+import { howToInvest } from "../../utils/data.ts";
 
 type FeatureProps = {
   title: string;
   description: string;
 };
+
+type investProps = {
+  title: string;
+  features: string[];
+  icon: string;
+};
+
 const features = [
   {
-    title: "Advanced Analytics",
+    title: "Real Asset Backing – Invest in tangible, revenue-generating assets with intrinsic value.",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
   {
-    title: "Targeted Ad Campaigns",
+    title: "Regulated & Secure – We comply with financial regulations to ensure security and transparency.",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
   {
-    title: "Content Calendar Management",
+    title: "Liquidity & Flexibility – Easily trade tokens in security token marketplaces.",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
   {
-    title: "Influencer Collaborations",
+    title: "Passive Income – Earn regular payouts from asset-generated revenue.",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
   {
-    title: "Customized Reporting",
+    title: "Hedge Against Inflation – Real assets provide protection against market volatility.",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
   {
-    title: "A/B Testing",
+    title: "Blockchain Innovation – Gain exposure to cutting-edge decentralized finance opportunities.",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
   },
-  {
+  /*{
     title: "Social Listening",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
@@ -71,7 +80,7 @@ const features = [
     title: "Competitor Analysis and Benchmarking",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  },
+  },*/
 ];
 
 export interface Props {
@@ -81,12 +90,11 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<section id="features" class=`${className}`>
+<section id="why-invest" class=`${className}`>
   <Container className="">
     <div class="text-center max-w-3xl mx-auto">
       <Title>
-        We provide <GradiantText>Important <br />Features</GradiantText> for Digital
-        Marketing
+        Why Invest in <GradiantText>Alpha Token Fund?</GradiantText>
       </Title>
     </div>
     <div class="flex flex-row flex-wrap mt-8">
@@ -95,7 +103,7 @@ const { className } = Astro.props;
       {
         features.map((feature: FeatureProps) => {
           return (
-            <div class="flex items-center text-heading-3 font-medium basis-full md:basis-1/2 lg:basis-1/3">
+            <div class="flex items-center text-heading-3 font-medium basis-full">
               <span class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">
                 &checkmark;
               </span>
@@ -105,6 +113,25 @@ const { className } = Astro.props;
         })
       }
       <!-- </div> -->
+    </div>
+  </Container>
+  <Container className="space-y-10 md:space-y-12">
+    <div class="mt-3"></div>
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <Title className=""><GradiantText>How to Invest</GradiantText></Title>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {
+        howToInvest.map((service: investProps) => {
+          return (
+            <Service
+              title={service.title}
+              features={service.features}
+              icon={service.icon}
+            />
+          );
+        })
+      }
     </div>
   </Container>
 </section>
