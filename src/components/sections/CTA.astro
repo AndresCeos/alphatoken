@@ -12,7 +12,7 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<section id="cta" class=`pb-20 ${className}`>
+<section id="contact" class=`pb-20 ${className}`>
   <Container>
     <div
       class="w-full relative py-8 md:py-10 px-6 md:px-8 rounded-2xl bg-gradient-to-br from-slate-100 to-zinc-200 dark:from-slate-800 dark:to-zinc-800"
@@ -22,17 +22,91 @@ const { className } = Astro.props;
           class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight
           font-bold text-heading-1"
         >
-          Ready to
-
-          <GradiantText> Transform </GradiantText>
-          Your
-          <GradiantText> Social Presence? </GradiantText>
+          <GradiantText> Contact Us </GradiantText>
         </h1>
-        <Paragraph className="pt-10 font-semibold">
-          Quick Start your Strategic Digital Marketing Campaing Today!
-        </Paragraph>
+        <div class="pt-10 font-semibold">
+          <form
+            id="miFormulario"
+            class="space-y-4 relative"
+            data-dashlane-rid="e37d96600aa0d224"
+            data-dashlane-classification="contact"
+          >
+            <div style="opacity: 1; transform: none;">
+              <input
+                class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm bg-background/80"
+                placeholder="Name"
+                data-dashlane-rid="49c8e3b331d65e8d"
+                data-dashlane-classification="name"
+                data-kwimpalastatus="alive"
+                data-kwimpalaid="1739831342596-8"
+                name="from_name"
+                id="from_name"
+              />
+            </div><div style="opacity: 1; transform: none;">
+              <input
+                type="email"
+                class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm bg-background/80"
+                placeholder="Email"
+                data-dashlane-rid="2532a97a612422a9"
+                data-dashlane-classification="email"
+                data-kwimpalastatus="alive"
+                data-kwimpalaid="1739831342596-5"
+                name="from_email"
+                id="from_email"
+              />
+            </div><div style="opacity: 1; transform: none;">
+              <textarea
+                class="flex w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[120px] backdrop-blur-sm bg-background/80"
+                placeholder="Message"
+                data-dashlane-rid="f81a6bb5fdf55efb"
+                data-dashlane-classification="other"
+                name="message"
+                id="message"></textarea>
+            </div><div tabindex="0">
+              <button
+                class="hover:bg-primary/90 h-10 px-4 py-2 w-full bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600 hover:opacity-90 transition-all duration-500 text-primary rounded-full text-white"
+                data-dashlane-label="true"
+                data-dashlane-rid="bf0cff99d399377f"
+                data-dashlane-classification="action"
+                type="submit">Send Message</button
+              >
+            </div>
+          </form>
+          <div>
+            <GradiantText> <span id="formSubmitText"></span></GradiantText>
+          </div>
+          <script is:inline>
+            document.addEventListener("DOMContentLoaded", function () {
+              document
+                .getElementById("miFormulario")
+                .addEventListener("submit", async function (event) {
+                  event.preventDefault();
+                  const serviceID = "service_55jqltw";
+                  const templateID = "template_q1azace";
+                  const publicKey = "eN464HirBdtg7HP81";
+                  try {
+                    await emailjs.sendForm(
+                      serviceID,
+                      templateID,
+                      event.target,
+                      publicKey,
+                    );
+                    document.getElementById("formSubmitText").innerHTML =
+                      "Correo enviado correctamente.";
+                    event.target.reset();
+                  } catch (error) {
+                    document.getElementById("formSubmitText").innerHTML =
+                      "Hubo un error al enviar el correo.";
+                  }
+                });
+            });
+          </script>
+        </div>
         <div class="mx-auto max-w-md sm:max-w-xl pt-10">
-          <CtaButton />
+          <!--CtaButton /-->
+          <Paragraph className="font-medium text:lg md:text-2xl">
+            <i class="far fa-envelope"></i> contact@alphatokenfund.com
+          </Paragraph>
         </div>
       </div>
     </div>
