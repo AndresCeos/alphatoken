@@ -26,6 +26,7 @@ const { className } = Astro.props;
         </h1>
         <div class="pt-10 font-semibold">
           <form
+            id="miFormulario"
             class="space-y-4 relative"
             data-dashlane-rid="e37d96600aa0d224"
             data-dashlane-classification="contact"
@@ -38,6 +39,8 @@ const { className } = Astro.props;
                 data-dashlane-classification="name"
                 data-kwimpalastatus="alive"
                 data-kwimpalaid="1739831342596-8"
+                name="from_name"
+                id="from_name"
               />
             </div><div style="opacity: 1; transform: none;">
               <input
@@ -48,22 +51,56 @@ const { className } = Astro.props;
                 data-dashlane-classification="email"
                 data-kwimpalastatus="alive"
                 data-kwimpalaid="1739831342596-5"
+                name="from_email"
+                id="from_email"
               />
             </div><div style="opacity: 1; transform: none;">
               <textarea
                 class="flex w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[120px] backdrop-blur-sm bg-background/80"
                 placeholder="Message"
                 data-dashlane-rid="f81a6bb5fdf55efb"
-                data-dashlane-classification="other"></textarea>
+                data-dashlane-classification="other"
+                name="message"
+                id="message"></textarea>
             </div><div tabindex="0">
               <button
                 class="hover:bg-primary/90 h-10 px-4 py-2 w-full bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600 hover:opacity-90 transition-all duration-500 text-primary rounded-full text-white"
                 data-dashlane-label="true"
                 data-dashlane-rid="bf0cff99d399377f"
-                data-dashlane-classification="action">Send Message</button
+                data-dashlane-classification="action"
+                type="submit">Send Message</button
               >
             </div>
           </form>
+          <div>
+            <GradiantText> <span id="formSubmitText"></span></GradiantText>
+          </div>
+          <script is:inline>
+            document.addEventListener("DOMContentLoaded", function () {
+              document
+                .getElementById("miFormulario")
+                .addEventListener("submit", async function (event) {
+                  event.preventDefault();
+                  const serviceID = "service_55jqltw";
+                  const templateID = "template_q1azace";
+                  const publicKey = "eN464HirBdtg7HP81";
+                  try {
+                    await emailjs.sendForm(
+                      serviceID,
+                      templateID,
+                      event.target,
+                      publicKey,
+                    );
+                    document.getElementById("formSubmitText").innerHTML =
+                      "Correo enviado correctamente.";
+                    event.target.reset();
+                  } catch (error) {
+                    document.getElementById("formSubmitText").innerHTML =
+                      "Hubo un error al enviar el correo.";
+                  }
+                });
+            });
+          </script>
         </div>
         <div class="mx-auto max-w-md sm:max-w-xl pt-10">
           <!--CtaButton /-->
